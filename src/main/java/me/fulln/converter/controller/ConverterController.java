@@ -1,6 +1,7 @@
 package me.fulln.converter.controller;
 
 import me.fulln.converter.CarDto;
+import me.fulln.converter.convert.BeanUtilsModel;
 import me.fulln.converter.convert.MapStructModel;
 import me.fulln.converter.convert.ModelMapperModel;
 import me.fulln.converter.convert.SelmaModel;
@@ -40,6 +41,9 @@ public class ConverterController {
     @Qualifier("selmaModel")
     private SelmaModel selmaModel;
 
+    @Autowired
+    private BeanUtilsModel beanUtilsModel;
+
     @GetMapping("/thread")
     public String thread(@RequestParam Integer cube) {
         StringBuilder returns = new StringBuilder();
@@ -60,6 +64,8 @@ public class ConverterController {
                         return modelMapperModel.execute();
                     }else if (cube ==3){
                        return selmaModel.execute();
+                    }else if (cube == 4){
+                        return beanUtilsModel.execute();
                     }
                     return  null;
                 }
